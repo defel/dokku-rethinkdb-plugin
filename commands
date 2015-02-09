@@ -214,10 +214,7 @@ EOF
         done < $BIND_FILE
     fi
 
-    VOLUME="$VOLUME_DIR:/rethinkdb"
-
-    docker run -v $VOLUME --name=$CONTAINER_NAME \
-        ${PORTS[@]} -d $RETHINKDB_IMAGE --bind all
+    docker run --name $CONTAINER_NAME ${PORTS[@]} -d $RETHINKDB_IMAGE
 
     # Save all dynamic port bindings as static bindings
     for port in "${DYNAMIC_PORTS[@]}"; do
